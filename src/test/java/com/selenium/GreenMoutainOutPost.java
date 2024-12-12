@@ -26,6 +26,14 @@ public class GreenMoutainOutPost {
 		Assert.assertEquals(palceOrdePageTitle, "Place Order");
 		String UnitPrice = driver.findElement(By.xpath("//table[@border='1']/tbody/tr[2]/td[4]")).getText();
 		System.out.println("UnitPrice:"+UnitPrice);
+		String ExtractedValueOfUnitPrice=UnitPrice.substring(2);
+		float UnitPricefloatValue=Float.parseFloat(ExtractedValueOfUnitPrice);
+		float calculatedtotalPrice=UnitPricefloatValue*2;
+		System.out.println("calculatedtotalPrice:"+calculatedtotalPrice);
+		float totalPriceDisplayed = Float.parseFloat(driver.findElement(By.xpath("//table[@border='1']/tbody/tr[2]/td[5]")).getText().substring(2));
+		Assert.assertEquals(calculatedtotalPrice, totalPriceDisplayed);
+		System.out.println("totalPriceDisplayed:"+totalPriceDisplayed);
+		
 		//driver.close();
 	}
 
