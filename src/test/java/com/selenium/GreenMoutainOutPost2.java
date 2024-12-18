@@ -15,6 +15,8 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.testng.Assert;
 
+import com.POM.GreenMountainPOM;
+
 public class GreenMoutainOutPost2 {
 	static WebDriver driver;
 	static Properties objProperties;
@@ -26,21 +28,23 @@ public class GreenMoutainOutPost2 {
 		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(10));
 		String titileOfHomePage = driver.getTitle();
 		System.out.println("titileOfHomePage:"+titileOfHomePage);
-		Assert.assertEquals(titileOfHomePage, "Welcome to Green Mountain Outpost");
-		driver.findElement(By.name("bSubmit")).click();
-		driver.findElement(By.name("QTY_GLASSES")).clear();
-		driver.findElement(By.name("QTY_GLASSES")).sendKeys("2");
-		driver.findElement(By.name("bSubmit")).click();
+		Assert.assertEquals(titileOfHomePage,objProperties.getProperty("TitleOfGreenMountainOutPost"));
+		GreenMountainPOM objGreenMountainPOM = new GreenMountainPOM(driver);
+		objGreenMountainPOM.EnterGmoOnline.click();
+		objGreenMountainPOM.QTY_Glasses.clear();
+		objGreenMountainPOM.QTY_Glasses.sendKeys(objProperties.getProperty("QTY_SunGlasses"));
+		objGreenMountainPOM.PlaceAnorder.click();
+		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(5));
 		String palceOrdePageTitle= driver.getTitle();
 		System.out.println("palceOrdePageTitle:"+palceOrdePageTitle);
-		Assert.assertEquals(palceOrdePageTitle, "Place Order");
-		String UnitPrice = driver.findElement(By.xpath("//table[@border='1']/tbody/tr[2]/td[4]")).getText();
+		Assert.assertEquals(palceOrdePageTitle, objProperties.getProperty("PlaceOrderTitle"));
+		String UnitPrice = objGreenMountainPOM.UnitPrice.getText();
 		System.out.println("UnitPrice:"+UnitPrice);
 		String ExtractedValueOfUnitPrice=UnitPrice.substring(2);
 		float UnitPricefloatValue=Float.parseFloat(ExtractedValueOfUnitPrice);
-		float calculatedtotalPrice=UnitPricefloatValue*2;
+		float calculatedtotalPrice=UnitPricefloatValue*Float.parseFloat(objProperties.getProperty("QTY_SunGlasses"));
 		System.out.println("calculatedtotalPrice:"+calculatedtotalPrice);
-		float totalPriceDisplayed = Float.parseFloat(driver.findElement(By.xpath("//table[@border='1']/tbody/tr[2]/td[5]")).getText().substring(2));
+		float totalPriceDisplayed = Float.parseFloat(objGreenMountainPOM.totalPriceDisplayed.getText().substring(2));
 		Assert.assertEquals(calculatedtotalPrice, totalPriceDisplayed);
 		System.out.println("totalPriceDisplayed:"+totalPriceDisplayed);
 		
