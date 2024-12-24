@@ -13,7 +13,7 @@ import org.testng.annotations.AfterSuite;
 
 public class TestNG_Annotations {
 	
-	@Test
+	@Test(priority=1,dependsOnMethods = {"loginTestCase"})
 	public void testCase2() {
 		System.out.println("testcase2");
 	}
@@ -24,10 +24,34 @@ public class TestNG_Annotations {
 		Assert.assertEquals(false, true);
 	}
 	
-
 	@Test(priority=-5)
-	public void testCase3() {
-		System.out.println("testcase3");
+	public void loginTestCase() {
+		System.out.println("loginTestCase");
+		Assert.assertEquals(false, true);
+	}
+	
+	@Test(invocationCount=6)
+	public void Testcase4() {
+		System.out.println("Testcase4");
+	
+	}
+	
+	@Test()
+	public void testcase5() {
+		System.out.println("testcase5");
+	
+	}
+	
+	@Test(enabled=false)
+	public void Testcase6() {
+		System.out.println("Testcase6");
+	
+	}
+	
+	@Test()
+	public void testCase7() {
+		System.out.println("testCase7");
+	
 	}
 
 	@BeforeMethod
