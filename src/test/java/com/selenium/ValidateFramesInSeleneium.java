@@ -41,21 +41,21 @@ public class ValidateFramesInSeleneium extends Library{
 	  System.out.println("ValidateTextBoxPresentInsideSingleFrame");
 	  framesPOM objFramesPOM = new framesPOM(driver);
 	  driver.switchTo().frame(objFramesPOM.singleFrame);
-	  objFramesPOM.singleFrameTextBox.sendKeys(objProperties.getProperty("SingleFrameText"));
-	  driver.switchTo().defaultContent();
+	  objFramesPOM.TextBox.sendKeys(objProperties.getProperty("SingleFrameText"));
+	  driver.switchTo().defaultContent();//to come out of inner html document (frame)
 	  objFramesPOM.IframeWithIframeButton.click();
   }
-//  
-//  @Test(priority=2)
-//  public void ValidateTextBoxPresentInsideIframeWithInIframe(){
-//	  System.out.println("inside ValidateTextBoxPresentInsideIframeWithInIframe");
-//	  FramesPOM obj = new FramesPOM();
-//	  driver.switchTo().frame(obj.OuterFrame);
-//	  driver.switchTo().frame(obj.InnerFrame);
-//	  obj.textBoxInsideOuterAndInnerFrame.sendKeys(objProperties.getProperty("IframeWithInIframeText"));
-//	  driver.switchTo().defaultContent();
-//  }
-// 
+  
+  @Test(priority=2)
+  public void ValidateTextBoxPresentInsideIframeWithInIframe(){
+	  System.out.println("inside ValidateTextBoxPresentInsideIframeWithInIframe");
+	  framesPOM obj = new framesPOM(driver);
+	  driver.switchTo().frame(obj.OuterFrame);
+	  driver.switchTo().frame(obj.InnerFrame);
+	  obj.TextBox.sendKeys(objProperties.getProperty("IframeWithInIframeText"));
+	  driver.switchTo().defaultContent();//to come out of inner html document (frame) . control now will be available in the main  html 
+  }
+ 
   @BeforeMethod
   public void beforeMethod() {
   }

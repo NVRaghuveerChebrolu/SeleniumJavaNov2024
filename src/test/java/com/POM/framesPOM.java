@@ -17,9 +17,15 @@ public class framesPOM {
 	public WebElement singleFrame;
 	
 	@FindBy(xpath="//input[@type='text']")
-	public WebElement singleFrameTextBox;
+	public WebElement TextBox;
 	
 	@FindBy(xpath="//a[contains(text(),'Iframe with in')]")
 	public WebElement IframeWithIframeButton;
+	
+	@FindBy(xpath="//iframe[@src='MultipleFrames.html']")
+	public WebElement OuterFrame;
+	
+	@FindBy(xpath="//iframe[@src='SingleFrame.html']")
+	public WebElement InnerFrame;
 
 }
