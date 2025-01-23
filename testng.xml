@@ -3,21 +3,23 @@
 <suite name="Suite">
 	<test thread-count="5" name="Test">
 		<classes>
-			<class name="com.selenium.TestNG_Annotations">
+			<!-- <class name="com.selenium.TestNG_Annotations">
 				<methods>
-				<!-- 	<include name="testCase1"></include>
-					<include name="loginTestCase"></include> -->
-					<!-- <exclude name=""></exclude> -->
+					<include name="testCase1"></include>
+					<include name="loginTestCase"></include>
+					<exclude name=""></exclude>
 				</methods>
-			</class>
+			</class> -->
 			
-			<class name="com.selenium.TestNG_Annotations">
+		<!-- 	<class name="com.selenium.TestNG_Annotations">
 				<methods>
-				<!-- 	<include name="testCase1"></include>
-					<include name="loginTestCase"></include> -->
-					<!-- <exclude name=""></exclude> -->
+					<include name="testCase1"></include>
+					<include name="loginTestCase"></include>
+					<exclude name=""></exclude>
 				</methods>
-			</class>
+			</class> -->
+			
+			<class name="com.selenium.ValidateMouseOperations"></class>
 			
 		</classes>
 	</test> <!-- Test -->

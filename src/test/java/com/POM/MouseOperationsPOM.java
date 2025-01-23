@@ -40,6 +40,14 @@ public class MouseOperationsPOM {
 	@FindBy(xpath="//span[text()='Double click the block']/preceding-sibling::div")
 	public WebElement DoubleClickBox;
 	
+	@FindBy(id="draggable")
+	public WebElement DragMeToMyTarget;
+	
+	@FindBy(id="droppable")
+	public WebElement DropHere;
+	
+	
+	
 	
 	
 	

@@ -64,7 +64,34 @@ public class ValidateMouseOperations extends Library{
 	 js.executeScript("arguments[0].scrollIntoView(true)",objMouseOperationsPOM.iframe);
 	 driver.switchTo().frame(objMouseOperationsPOM.iframe);
 	 Actions objAction = new Actions(driver);
+	 //to perform double click
 	 objAction.doubleClick(objMouseOperationsPOM.DoubleClickBox).build().perform();
+ }
+ 
+ @Test(priority=2)
+ public void ValidateDragAndDrop() {
+	 System.out.println("inside ValidateDragAndDrop");
+	 driver.navigate().to(objProperties.getProperty("mouseOperationDragAndDrop"));
+	 MouseOperationsPOM objMouseOperationsPOM = new  MouseOperationsPOM(driver);
+	 // to switch to the frame and gain control over inner html
+	 driver.switchTo().frame(objMouseOperationsPOM.iframe);
+	 Actions objActions = new Actions(driver);
+	 objActions.dragAndDrop(objMouseOperationsPOM.DragMeToMyTarget, objMouseOperationsPOM.DropHere).build().perform();
+	 // to come out of frame and gain control over the main html
+	 driver.switchTo().defaultContent();
+ }
+ 
+ @Test(priority=3)
+ public void NavigationOperationsInSelenium() throws InterruptedException {
+	 System.out.println("inside NavigationOperationsInSelenium");
+	 //to refresh a page
+	 driver.navigate().refresh();
+	 Thread.sleep(2000);
+	 //to navigate to the previous page
+	 driver.navigate().back();
+	 Thread.sleep(2000);
+	//to navigate to the next page
+	 driver.navigate().forward();
  }
  
   @BeforeMethod
