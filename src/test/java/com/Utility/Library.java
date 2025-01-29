@@ -4,7 +4,9 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.time.Duration;
+import java.util.List;
 import java.util.Properties;
+import java.util.Random;
 
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -56,6 +58,28 @@ public class Library {
 	public void ScrollIntoView(WebElement element) {
 		 JavascriptExecutor js = (JavascriptExecutor)driver;
 		 js.executeScript("arguments[0].scrollIntoView(true)",element);
+	}
+	
+	public int randomCalenderDayvalue() {
+		Random random = new Random();   
+		// Generates random integers 0 to 31 
+		int x = random.nextInt(32); 
+		if(x==0) {
+			x=1;
+		}
+		System.out.println("random day generated is:"+x);
+		return x;
+	}
+	
+	public void selectRequiredValueFromDropDown(List<WebElement> AllDropDownValues, String DropDownValueToBeSelected) {
+		int NumberOfDropDownValues = AllDropDownValues.size();
+		for(int i = 1;i<=NumberOfDropDownValues;i++) {
+			String IndividualDropDownValue=AllDropDownValues.get(i).getText();
+			if(IndividualDropDownValue.equals(DropDownValueToBeSelected)) {
+				AllDropDownValues.get(i).click();
+				break;
+			}
+		}
 	}
 
 }
